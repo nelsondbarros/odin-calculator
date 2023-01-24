@@ -60,22 +60,3 @@ body{
 
   outline: none;
 }
-/* .container {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: repeat(4, 3rem)
-}
-
-#display {
-    background-color: rgb(75, 68, 68);
-    color: rgb(255, 255, 255);
-    border: 1px solid black;
-    padding: 1rem;
-    width: 130px;
-    height: 20px;
-}
-
-.key {
-    
-} */

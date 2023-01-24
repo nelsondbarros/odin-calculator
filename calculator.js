@@ -5,19 +5,22 @@ const buttons = document.querySelectorAll('.key');
 const display = document.getElementById('display');
 
 function add(number1,number2) {
-    return (number1+number2)
+    return (number1+number2);
 }
 
 function subtract(number1,number2) {
-    return (number1-number2)
+    return (number1-number2);
 }
 
 function multiply(number1,number2) {
-    return (number1*number2)
+    return (number1*number2);
 }
 
 function divide(number1,number2) {
-    return (number1/number2)
+    if(number1 == 0 && number2 == 0) {
+        return "Cannot divide 0 by 0";
+    }
+    return (number1/number2);
 }
 
 function operate(operator,number1,number2) {
@@ -27,16 +30,16 @@ function operate(operator,number1,number2) {
             result = add(number1,number2);
             break;
         case subtract:
-            result = subtract(number1,number2)
+            result = subtract(number1,number2);
             break; 
         case multiply:
-            result = multiply(number1,number2)
+            result = multiply(number1,number2);
             break;
         case divide:
-            result = divide(number1,number2)
+            result = divide(number1,number2);
             break;
         default:
-            "Not supported"
+            "Not supported";
     }
     return result;
 }
@@ -47,43 +50,49 @@ function operate(operator,number1,number2) {
 // })})
 document.getElementById('add').addEventListener("click", () => {
     value1 = display.textContent;
-    displayResult = ""
+    displayResult = "";
     display.textContent = "";
-    operator = add
+    operator = add;
 })
 
 document.getElementById('subtract').addEventListener("click", () => {
     value1 = display.textContent;
-    displayResult = ""
+    displayResult = "";
     display.textContent = "";
-    operator = subtract
+    operator = subtract;
 })
 
 document.getElementById('multiply').addEventListener("click", () => {
     value1 = display.textContent;
     displayResult = ""
     display.textContent = "";
-    operator = multiply
+    operator = multiply;
 })
 
 document.getElementById('divide').addEventListener("click", () => {
     value1 = display.textContent;
     displayResult = ""
     display.textContent = "";
-    operator = divide
+    operator = divide;
 })
 
 document.getElementById('equals').addEventListener("click", () => {
+
     value2 = display.textContent;
-    displayResult = ""
+    displayResult = "";
     display.textContent = "";
     let result = operate(operator, Number(value1), Number(value2));
-    display.textContent = Math.round(result)
+    if(typeof result === 'string'){
+        display.textContent = "Cannot divide 0 by 0"
+    }
+    else{
+        display.textContent = (Math.round(result * 100)/100);
+    }
 
 })
 
 document.getElementById('clear').addEventListener("click", () => {
-    displayResult = ""
+    displayResult = "";
     display.textContent = "";
 })
 
@@ -92,5 +101,7 @@ const buttonPressed = e => {
   }
 
 for(i=0;i<10;i++){
-    document.getElementById("" + i).addEventListener("click", buttonPressed)
+    document.getElementById("" + i).addEventListener("click", buttonPressed);
 }
+
+document.getElementById(".").addEventListener("click", (buttonPressed));
