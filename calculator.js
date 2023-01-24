@@ -1,7 +1,9 @@
 let displayResult = "";
 let value1, value2, valueTemp;
 let operator;
+let operatorPressed;
 var values = []
+let equalResult;
 const buttons = document.querySelectorAll('.key');
 const display = document.getElementById('display');
 
@@ -46,77 +48,131 @@ function operate(operator,number1,number2) {
 }
 
 
+function simpleCalculate(){
+    let result = operate(operator, values.at(-2), values.at(-1));
+    values[0] = result
+    values.pop()
+    equalResult = result;
+    display.textContent = (Math.round(result * 100) / 100);
+}
+
 // buttons.forEach((button) => {button.addEventListener('click', () => {   
 
 // })})
 document.getElementById('add').addEventListener("click", () => {
 
-    // value1 = display.textContent;
-    // displayResult = "";
-    // display.textContent = "";
-    // operator = add;
-
-    values.push(Number(display.textContent));
-    displayResult = "";
-    display.textContent = "";
-    operator = add;
+    if (values[0] == 0 || values[0] == null){
+        values.push(Number(display.textContent));
+        displayResult = "";
+        display.textContent = "";
+        operator = add;
+    }
+    else {
+        values.push(Number(display.textContent));
+        displayResult = "";
+        display.textContent = "";
+        if (operatorPressed !== "add") {
+            simpleCalculate()
+        }
+        else {
+            operator = add;
+            simpleCalculate()
+        }
+        operatorPressed = "add"
+    }
 
 })
 
 document.getElementById('subtract').addEventListener("click", () => {
-    // value1 = display.textContent;
-    // displayResult = "";
-    // display.textContent = "";
-    // operator = subtract;
 
-    values.push(Number(display.textContent));
-    displayResult = "";
-    display.textContent = "";
-    operator = subtract;
+    if (values[0] == 0 || values[0] == null){
+        values.push(Number(display.textContent));
+        displayResult = "";
+        display.textContent = "";
+        operator = subtract;
+    }
+    else {
+        values.push(Number(display.textContent));
+        displayResult = "";
+        display.textContent = "";
+        if (operatorPressed !== "subtract") {
+            simpleCalculate()
+        }
+        else {
+            operator = subtract;
+            simpleCalculate()
+        }
+        operatorPressed = "subtract"
+    }
+    
 })
 
 document.getElementById('multiply').addEventListener("click", () => {
-    // value1 = display.textContent;
-    // displayResult = ""
-    // display.textContent = "";
-    // operator = multiply;
 
-    values.push(Number(display.textContent));
-    displayResult = "";
-    display.textContent = "";
-    operator = multiply;
+    if (values[0] == 0 || values[0] == null){
+        values.push(Number(display.textContent));
+        displayResult = "";
+        display.textContent = "";
+        operator = multiply;
+    }
+    else {
+        values.push(Number(display.textContent));
+        displayResult = "";
+        display.textContent = "";
+        if (operatorPressed !== "multiply") {
+            simpleCalculate()
+        }
+        else {
+            operator = multiply;
+            simpleCalculate()
+        }
+        operatorPressed = "multiply"
+    }
 })
 
 document.getElementById('divide').addEventListener("click", () => {
-    // value1 = display.textContent;
-    // displayResult = ""
-    // display.textContent = "";
-    // operator = divide;
 
-    values.push(Number(display.textContent));
-    displayResult = "";
-    display.textContent = "";
-    operator = divide;
+    if (values[0] == 0 || values[0] == null){
+        values.push(Number(display.textContent));
+        displayResult = "";
+        display.textContent = "";
+        operator = divide;
+    }
+    else {
+        values.push(Number(display.textContent));
+        displayResult = "";
+        display.textContent = "";
+        if (operatorPressed !== "divide") {
+            simpleCalculate()
+        }
+        else {
+            operator = divide;
+            simpleCalculate()
+        }
+        operatorPressed = "divide"
+    }
 })
 
 document.getElementById('equals').addEventListener("click", () => {
 
-    // value2 = display.textContent;
-    // displayResult = "";
-    // display.textContent = "";
-    // let result = operate(operator, Number(value1), Number(value2));
-    // if(typeof result === 'string'){
-    //     display.textContent = "Cannot divide 0 by 0"
-    // }
-    // else{
-    //     display.textContent = (Math.round(result * 100)/100);
-    // }
-
     values.push(Number(display.textContent));
+    switch(operatorPressed) {
+        case "add":
+            operator = add;
+            break;
+        case "subtract":
+            operator = subtract;
+            break;
+        case "multiply":
+            operator = multiply;
+            break;
+        case "divide":
+            operator = divide;
+            break;
+    }
+    simpleCalculate()
     displayResult = "";
-    display.textContent = "";
-    let result = operate(operator, values.at(-1), values.at(-2) );
-    display.textContent = (Math.round(result * 100) / 100);
+    values[0] = 0;
 
 })
 
